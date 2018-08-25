@@ -316,7 +316,7 @@ def statistics():
         print("That took %s seconds." % (time.time() - start_time))
         print("\nCalculating the next statistic...")
     
-    if time_period == 'none' or time_period == 'month':
+    if time_period == 'day' or time_period == 'month':
         start_time = time.time()
         
         # What is the most popular day of week (Monday, Tuesday, etc.) for start time?
