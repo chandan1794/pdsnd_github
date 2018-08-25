@@ -54,15 +54,15 @@ def get_month():
         (tuple) Lower limit, upper limit of month for the bikeshare data.
     '''
     month_input = ''
-    months_dict = {'january': 1, 'february': 2, 'march': 3, 'april': 4,
+    months_map = {'january': 1, 'february': 2, 'march': 3, 'april': 4,
                    'may': 5, 'june': 6}
-    while month_input.lower() not in months_dict.keys():
+    while month_input.lower() not in months_map.keys():
         month_input = input('\nWhich month? January, February, March, April,'
                             ' May, or June?\n')
-        if month_input.lower() not in months_dict.keys():
+        if month_input.lower() not in months_map.keys():
             print('Sorry, I do not understand your input. Please type in a '
                   'month between January and June')
-    month = months_dict[month_input.lower()]
+    month = months_map[month_input.lower()]
     return ('2017-{}'.format(month), '2017-{}'.format(month + 1))
 
 def get_day():
@@ -103,8 +103,8 @@ def popular_month(df):
     '''
     months = ['January', 'February', 'March', 'April', 'May', 'June']
     index = int(df['start_time'].dt.month.mode())
-    most_pop_month = months[index - 1]
-    print('The most popular month is {}.'.format(most_pop_month))
+    most_popular_month = months[index - 1]
+    print('The most popular month is {}.'.format(most_popular_month))
 
 def popular_day(df):
     '''Finds and prints the most popular day of week (Monday, Tuesday, etc.) for start time.
@@ -116,8 +116,8 @@ def popular_day(df):
     days_of_week = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday',
                     'Saturday', 'Sunday']
     index = int(df['start_time'].dt.dayofweek.mode())
-    most_pop_day = days_of_week[index]
-    print('The most popular day of week for start time is {}.'.format(most_pop_day))
+    most_popular_day = days_of_week[index]
+    print('The most popular day of week for start time is {}.'.format(most_popular_day))
 
 def popular_hour(df):
     '''Finds and prints the most popular hour of day for start time.
@@ -126,17 +126,17 @@ def popular_hour(df):
     Returns:
         none
     '''
-    most_pop_hour = int(df['start_time'].dt.hour.mode())
-    if most_pop_hour == 0:
-        am_pm = 'am'
-        pop_hour_readable = 12
-    elif 1 <= most_pop_hour < 13:
-        am_pm = 'am'
-        pop_hour_readable = most_pop_hour
-    elif 13 <= most_pop_hour < 24:
-        am_pm = 'pm'
-        pop_hour_readable = most_pop_hour - 12
-    print('The most popular hour of day for start time is {}{}.'.format(pop_hour_readable, am_pm))
+    most_popular_hour = int(df['start_time'].dt.hour.mode())
+    if most_popular_hour == 0:
+        am_or_pm = 'am'
+        popular_hour_readable = 12
+    elif 1 <= most_popular_hour < 13:
+        am_or_pm = 'am'
+        popular_hour_readable = most_popular_hour
+    elif 13 <= most_popular_hour < 24:
+        am_or_pm = 'pm'
+        popular_hour_readable = most_popular_hour - 12
+    print('The most popular hour of day for start time is {}{}.'.format(popular_hour_readable, am_or_pm))
 
 def trip_duration(df):
     '''Finds and prints the total trip duration and average trip duration in
@@ -167,10 +167,10 @@ def popular_stations(df):
     Returns:
         none
     '''
-    pop_start = df['start_station'].mode().to_string(index = False)
-    pop_end = df['end_station'].mode().to_string(index = False)
-    print('The most popular start station is {}.'.format(pop_start))
-    print('The most popular end station is {}.'.format(pop_end))
+    popular_start = df['start_station'].mode().to_string(index = False)
+    popular_end = df['end_station'].mode().to_string(index = False)
+    print('The most popular start station is {}.'.format(popular_start))
+    print('The most popular end station is {}.'.format(popular_end))
 
 def popular_trip(df):
     '''Finds and prints the most popular trip.
@@ -179,9 +179,9 @@ def popular_trip(df):
     Returns:
         none
     '''
-    most_pop_trip = df['journey'].mode().to_string(index = False)
+    most_popular_trip = df['journey'].mode().to_string(index = False)
     # The 'journey' column is created in the statistics() function.
-    print('The most popular trip is {}.'.format(most_pop_trip))
+    print('The most popular trip is {}.'.format(most_popular_trip))
 
 def users(df):
     '''Finds and prints the counts of each user type.
@@ -190,9 +190,9 @@ def users(df):
     Returns:
         none
     '''
-    subs = df.query('user_type == "Subscriber"').user_type.count()
-    cust = df.query('user_type == "Customer"').user_type.count()
-    print('There are {} Subscribers and {} Customers.'.format(subs, cust))
+    subscribers = df.query('user_type == "Subscriber"').user_type.count()
+    customers = df.query('user_type == "Customer"').user_type.count()
+    print('There are {} Subscribers and {} Customers.'.format(subscribers, customers))
 
 def gender(df):
     '''Finds and prints the counts of gender.
