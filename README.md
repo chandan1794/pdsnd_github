@@ -17,14 +17,14 @@ This Python script is written to explore data related to bike share systems for 
 The datasets used for this script contain bike share data. Some data wrangling has been performed by Udacity's staff before being provided to the students.
 The data files for all three cities contain the same six columns:
 
-1. Start Time
-2. End Time
-3. Trip Duration (in seconds)
-4. Start Station
-5. End Station
-6. User Type (Subscriber or Customer)
+* Start Time
+* End Time
+* Trip Duration (in seconds)
+* Start Station
+* End Station
+* User Type (Subscriber or Customer)
 
 The Chicago and New York City files also contain the following two columns:
 
-1. Gender
-2. Birth Year
+* Gender
+* Birth Year
